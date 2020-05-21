@@ -1,2 +1,0 @@
-# Hello, Welcome to Chapter 10 MATLAB Programming!
-# This Chapter will involve Advanced Functions in MATLAB programming!
