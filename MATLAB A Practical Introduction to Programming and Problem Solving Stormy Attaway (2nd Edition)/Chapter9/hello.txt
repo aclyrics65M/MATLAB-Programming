@@ -1,0 +1,2 @@
+# Welcome to Chapter 9 of MATLAB Programming!
+# In this chapter, there will be loading and reading data files!
