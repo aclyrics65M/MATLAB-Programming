@@ -1,0 +1,36 @@
+function guiWithLeftJustify
+% Simple GUI with an edit box, using
+% normalized units and left-justified text
+% Format of call: guiWithLeftJustify
+% Does not return any values
+
+f = figure('Visible','off', 'Color', 'white', 'Units',...
+    'Normalized','Position',[0.2 0.2 0.7 0.7], ...
+    'Name','GUI using Normalized Units');
+
+movegui(f, 'center')
+
+% Create edit and static text boxes
+hsttext = uicontrol('Style','text','BackgroundColor',...
+    'white','Units','Normalized','Position',...
+    [0.15 0.8 0.5 0.1], 'HorizontalAlignment','left',...
+    'String','Enter your string here');
+
+hedtext = uicontrol('Style','edit','BackgroundColor',...
+    'white','Units','Normalized','Position',...
+    [0.15 0.6 0.5 0.1], 'Callback', @callbackfn);
+
+set(f, 'Visible', 'on')
+
+    % Callback function
+    function callbackfn(source, eventdata)
+        set([hsttext, hedtext],'Visible','off');
+        printstr = get(hedtext,'String');
+        hstr = uicontrol('Style','text','BackgroundColor',...
+            'white', 'Units', 'Normalized','Position',...
+            [.2 .4 .6 .2], 'HorizontalAlignment','left',...
+            'String',printstr,'FontSize',30,...
+            'ForegroundColor','Red');
+        set(hstr, 'Visible','on');
+    end
+end

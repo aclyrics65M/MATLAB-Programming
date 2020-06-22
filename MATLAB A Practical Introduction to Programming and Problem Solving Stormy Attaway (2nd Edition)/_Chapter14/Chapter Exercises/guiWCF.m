@@ -1,0 +1,49 @@
+function guiWCF
+% GUI with Wind Chill Factor
+% Format of call: guiWCF
+% Does not return any values
+% Create the GUI but make it invisible for now while
+% it is being initialized
+
+f = figure('Visible', 'off','color','white','Position',...
+    [300, 400, 500, 325]);
+
+htempslider = uicontrol('Style','slider','Position', ...
+    [150, 250, 200, 20],'Min',0,'Max',60,'Value',35,...
+    'Callback',@update);
+
+htemptext = uicontrol('Style','text','Position', ...
+    [175, 275, 150, 18],'HorizontalAlignment',...
+    'Center','BackgroundColor','white');
+
+hvelslider = uicontrol('Style','slider','Position', ...
+    [150, 150, 200, 20],'Min',0,'Max',30,'Value',15,...
+    'Callback',@update);
+
+hveltext = uicontrol('Style','text','Position', ...
+    [175, 175, 150, 18],'HorizontalAlignment',...
+    'Center','BackgroundColor','white');
+hWCFtext = uicontrol('Style','text','Position', ...
+    [175, 75, 150, 18],'HorizontalAlignment','Center',...
+    'BackgroundColor','white');
+
+% Put a name on it and move to the center of the screen
+set(f,'Name','Simple GUI')
+movegui(f,'center')
+update()
+
+% Now the GUI is made visible
+set(f,'Visible','on');
+    function update(source,eventdata)
+        temp = get(htempslider,'Value');
+        vel = get(hvelslider,'Value');
+        set(htemptext,'String',...
+            ['Temperature: ' num2str(round(temp)) ' F'])
+        set(hveltext,'String',...
+            ['Wind Velocity: ' num2str(round(vel)) ' MPH'])
+        WCF =35.7+.6*round(temp)-35.7*(round(vel)).^.16+...
+            0.43*round(temp)*(round(vel)).^(0.16);
+        set(hWCFtext,'String',...
+            ['Wind Chill Factor: ' num2str(round(WCF)) ' F'])
+    end
+end
