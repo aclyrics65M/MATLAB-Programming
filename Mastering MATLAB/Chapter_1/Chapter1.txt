@@ -1,1 +1,0 @@
-This is the textfile for Chapter 1 of Mastering MATLAB.
